@@ -23,7 +23,7 @@ pkgs.mkShell {
 		pkgs.libxml2
 		pkgs.SDL2
 		pkgs.bullet
-		pgks.qt6.qt5compat
+        pkgs.qt6.qt5compat
 		pkgs.mygui
 		pkgs.openscenegraph
 		pkgs.openal

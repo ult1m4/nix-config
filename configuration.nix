@@ -170,7 +170,6 @@ in
     emacsNativeComp
     htop
     discord
-    steam
     geany
     easyeffects
     gimp
