@@ -24,6 +24,9 @@ in
   boot.initrd.luks.devices."luks-6e09827a-28c0-4067-9832-c4086d59e0bf".device = "/dev/disk/by-uuid/6e09827a-28c0-4067-9832-c4086d59e0bf";
   boot.initrd.luks.devices."luks-6e09827a-28c0-4067-9832-c4086d59e0bf".keyFile = "/crypto_keyfile.bin";
 
+  # Kernel package
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.hostName = "nixaroni"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -124,6 +127,12 @@ in
     };
   };
 
+  
+  # Updates NIXOS
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = false;
+  system.autoUpgrade.channel = https://nixos.org/channels/nixos-unstable;
+
   # Allow unfree packages and enable Nvidia
   nixpkgs.config.allowUnfree = true;
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -174,6 +183,7 @@ in
     easyeffects
     gimp
     firefox
+    blender
     bash
     boost
     openal
@@ -208,6 +218,13 @@ in
     libreoffice-fresh
     nixpkgs-fmt
     betterdiscordctl
+    godot
+    lutris
+    standardnotes
+    qbittorrent
+    dxvk
+    wine
+    bottles
     (neovim.override {
       vimAlias = true;
       configure = {
@@ -222,7 +239,7 @@ in
         '';
       };
     })
-
+    
 
     # Extra Dev
     lsb-release
@@ -280,15 +297,16 @@ in
   #Set default editor Vim
   environment.variables.EDITOR = "vim";
 
-  #Redshift config
   /*
+  #Redshift config
+    location.latitude = 35.96;
+    location.longitude = -83.92;
+  
     services.redshift = {
     enable = true;
-    latitude = "35.96";
-    longitude = "-83.92";
     temperature.day = 3500;
     temperature.night = 3500;
-    };
+    }; 
   */
 
   #Nix jobs
