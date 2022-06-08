@@ -100,9 +100,9 @@ in
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.goomba = {
+  users.users.INSERTUSERHERE = {
     isNormalUser = true;
-    description = "goomba";
+    description = "INSERTUSERHERE";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
@@ -162,19 +162,11 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #dmenu
     obs-studio
     openssl
-    wget
-    git
     librewolf
     vim
-    emacs
-    ripgrep
     coreutils
-    fd
-    clang
-    #pkgs.emacsGcc
     emacsNativeComp
     htop
     discord
@@ -185,32 +177,13 @@ in
     firefox
     blender
     bash
-    boost
-    openal
-    openscenegraph
-    mygui
-    qt6.qt5compat
-    bullet
     ffmpeg
-    SDL2
-    ncurses
-    luajit
-    boost
-    rustup
-    gnome.gnome-screenshot
-    # nur.repos.crazazy.js.tldr
     tdesktop
     usbutils
     pciutils
-    lshw
-    dmidecode
     unzip
-    libxml2
-    jq
-    yq
     exfat
     zip
-    open-vm-tools
     xow
     element-desktop
     redshift
@@ -225,6 +198,8 @@ in
     dxvk
     wine
     bottles
+    
+    # Couple Neovim changes
     (neovim.override {
       vimAlias = true;
       configure = {
@@ -241,51 +216,22 @@ in
     })
     
 
-    # Extra Dev
-    lsb-release
+    # General devel I'm keeping outside of nix-shell for now ...
     cmake
-    bundix
     python27Full
     python37Full
     shellcheck
     gtk3
-    pkgconfig
     gcc
-    gpp
-    gdb
-    automake
-    gnumake
     pkg-config
-    clang-tools
-    indent
-    splint
-    binutils
-
-    #Random for OpenMW
-    recastnavigation
-    lz4
-    qt6.wrapQtAppsHook
-    libGL
-    libGLU
-    glm
-    freeglut
-    unshield
-    libxkbcommon
+    wget
+    git
+    rustup
   ];
+  
   # Enable QEMU VM
   virtualisation.libvirtd.enable = true;
-
-  # Install and configure Docker
-  /*
-    virtualisation.docker = {
-    enable = true;
-    # Run docker system prune -f periodically
-    autoPrune.enable = true;
-    autoPrune.dates = "weekly";
-    # Don't start the service at boot, use systemd socket activation
-    enableOnBoot = false;
-    };
-  */
+  
   # Periodically update the database of files used by the locate command
   services.locate.enable = true;
 
@@ -298,7 +244,7 @@ in
   environment.variables.EDITOR = "vim";
 
   /*
-  #Redshift config
+  #Redshift config (this flashes on and off but no errors now, I think because it's already configured in the system, this might work fine in a fresh install. Need to test.
     location.latitude = 35.96;
     location.longitude = -83.92;
   
@@ -356,3 +302,4 @@ in
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
+
